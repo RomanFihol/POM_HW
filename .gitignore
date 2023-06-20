@@ -1,4 +1,5 @@
- /cypress.config.js/
- /node_modules//
- /package-lock.json/
- /package.json/
+cypress.config.js
+ 
+ package-lock.json
+ package.json
+node_modules
