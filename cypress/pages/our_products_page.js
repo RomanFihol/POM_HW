@@ -60,13 +60,14 @@ export default class Our_Products {
 
 
     CheckModalWindowForRandomTopics() {
-        const AllValues = new Array();
+        const AllValues = [];
         return cy.get('div[data-toggle="modal"]>a>div').each(($el) => {
             const attrValue = $el.attr('id');
             AllValues.push(attrValue)
-
-            for (let i = 0; i < 1; i++) {
-                let MaxInt = 8; // -1
+            console.log(AllValues)
+        }).then(() => {
+            for (let i = 0; i < 5; i++) {
+                let MaxInt = AllValues.length; // -1
                 function getRandomInt() {
                     return Math.floor(Math.random() * MaxInt)
                 }
@@ -80,5 +81,8 @@ export default class Our_Products {
                 }
             }
         })
+
+
+        //})
     };
 }

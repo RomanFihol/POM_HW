@@ -5,6 +5,7 @@ export default class Home_page {
 
     openHomePage() {
         cy.visit('http://www.webdriveruniversity.com/Page-Object-Model/index.html');
+      
     }
 
     checkLinkToTheMainPage() {

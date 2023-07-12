@@ -31,7 +31,7 @@ describe('Our Products Page testing', () => {
 
     
 
-    it('Check modal window for random topics', () => {
+    it.only('Check modal window for random topics', () => {
         our_product.CheckModalWindowForRandomTopics();
     });
 })
