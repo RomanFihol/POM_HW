@@ -11,12 +11,13 @@ export const users = [
         testName: "Empty email",
         first_name: '2_name',
         last_name: '2_surname',
+        email: ' ',
         comment: 'Test text 2'
     },
     {
         testName: "Wrong email",
         first_name: '',
-        email: 'test3@gmail.com',
+        email: 'test3@gmail',
         last_name: '3_name',
         comment: 'Test text 3'
     }]

@@ -23,3 +23,14 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+// import 'cypress-wait-until';
+
+// Cypress.Commands.overwrite('waitUntil', (originalFn, subject, callback, options) => {
+//   const customOptions = {
+//     ...options,
+//     timeout: 10000, // Увеличьте это значение на ваше усмотрение (в миллисекундах)
+//   };
+
+//   return originalFn(subject, callback, customOptions);
+// });

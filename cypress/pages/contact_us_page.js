@@ -1,36 +1,33 @@
 import { errors } from "../test-data/users-test-data";
 
 class ContactUsPage {
-    visit() {
-        cy.visit('http://www.webdriveruniversity.com/Contact-Us/contactus.html')
-    }
-
-    getFirstName() {
+    
+    static get getFirstName() {
         return cy.get("input[name='first_name']");
     };
-    getLastName() {
+    static get getLastName() {
         return cy.get("input[name='last_name']");
     };
-    getEmail() {
+    static get getEmail() {
         return cy.get("input[name='email']");
     };
-    getComment() {
+    static get getComment() {
         return cy.get("textarea[name='message']");
     };
-    getSubmitButton() {
-        return cy.get('#form_buttons').contains('SUBMIT');
+    static get getSubmitButton() {
+        return cy.get('div#form_buttons').contains('SUBMIT');
     };
-    getResetButton() {
-        return cy.get('#form_buttons').contains('RESET');
+    static get getResetButton() {
+        return cy.get('div#form_buttons').contains('RESET');
     };
-    getTitle() {
-        return cy.get('.section_header').contains('CONTACT US');
+    static get getTitle() {
+        return cy.get('h2.section_header').contains('CONTACT US');
     };
-    getSuccsessSubmitMessage() {
-        return cy.get('div#contact_reply > h1').should('have.text','Thank You for your Message!');
+    static get getSuccsessSubmitMessage() {
+        return cy.get('div#contact_reply > h1').should('have.text', 'Thank You for your Message!');
     }
 
-    fillContactUsForm(user) {
+     static fillContactUsForm(user) {
         if (user.first_name) {
             this.getFirstName().type(user.first_name);
         }
@@ -46,17 +43,15 @@ class ContactUsPage {
         this.getSubmitButton().click();
     }
 
-    getAllFieldsAreRequiredError(){
+    getAllFieldsAreRequiredError() {
         return cy.contains(errors.invailAllFields);
     }
 
-    getInvalidEmailError(){
+     static get getInvalidEmailError() {
         return cy.contains(errors.invalidEmail);
     }
 
 
 }
-
-
 
 export default ContactUsPage;

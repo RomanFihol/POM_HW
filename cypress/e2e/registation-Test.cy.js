@@ -2,6 +2,7 @@
 
 import { users } from "../test-data/users-test-data";
 import ContactUsPage from "../pages/contact_us_page";
+import { contact_page_steps } from "../steps/contsctUsPage_steps";
 
 
 const contactUsPage = new ContactUsPage();
@@ -11,14 +12,14 @@ const userWithEmptyFirstName = users[2];
 
 describe('Contact us form', () => {
   beforeEach(() => {
-    contactUsPage.visit();
+    contact_page_steps.visit();
   })
 
   it(`Fill fields with all data ${userWithAlldata.testName}`, () => {
-    contactUsPage.fillContactUsForm(userWithAlldata);
-    contactUsPage.getSuccsessSubmitMessage().should('exist');
-    contactUsPage.getInvalidEmailError().should("not.exist");
-    contactUsPage.getAllFieldsAreRequiredError().should('not.exist');
+    contact_page_steps.FillTheForm(userWithAlldata);
+    contact_page_steps.subitnButtonClick();
+    contact_page_steps.verifySuccessMessages();
+    //ContactUsPage.getInvalidEmailError.should("not.exist");
   })
 
 
