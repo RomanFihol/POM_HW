@@ -1,6 +1,6 @@
 /// <reference types = "Cypress"/>
 import { AccordionPOM } from "../pages/Accordion_Items_POM";
-import { AutomationDesc, CucumberBDDDesc, HeaderText, ManualTestingDesc, WebDriwerMainPageUrl } from "../test-data/accordion_page_datas";
+import { AutomationDesc, CucumberBDDDesc, HeaderText, KeepClickingDesc, ManualTestingDesc, WebDriwerMainPageUrl } from "../test-data/accordion_page_datas";
 import 'cypress-wait-until'
 export class Accordion_Page_Steps {
     visit() {
@@ -8,87 +8,87 @@ export class Accordion_Page_Steps {
             should('include', 'Accordion');
     }
 
-    getNavBar() {
+    getNavBarStep() {
         AccordionPOM.navBar.should('exist');
     }
-    checkNavBar() {
+    checkNavBarStep() {
         AccordionPOM.navBar.should('have.text', 'WebDriver (Accordion Items & Text Appear)').
             click().url().should('equal', WebDriwerMainPageUrl).go('back');
     }
-    getHeader() {
+    getHeaderStep() {
         AccordionPOM.header.should('exist');
     }
-    checkHeader() {
-        AccordionPOM.header.should('have.text', 'Click on One of the Accordian Items Below!');
+    checkHeaderStep() {
+        AccordionPOM.header.should('have.text', HeaderText);
     }
-    getManualTestingTopic() {
+    getManualTestingTopicStep() {
         AccordionPOM.manualTestingAccordion.should('exist');
     }
-    checkManualTestingAccordionExpand() {
+    checkManualTestingAccordionExpandStep() {
         AccordionPOM.manualTestingAccordion.should('have.text', 'Manual Testing').
             click().should('have.class', 'accordion active');
     }
-    checkManualTestingAccordionDdescription() {
+    checkManualTestingAccordionDdescriptionStep() {
         AccordionPOM.manualTestingAccordionDescription.invoke('text').then((text) => {
             expect(text).to.equal(ManualTestingDesc);
         })
     }
-    getCucumberTopic() {
+    getCucumberTopicStep() {
         AccordionPOM.cucumberBddAccordion.should('exist');
     }
 
-    checkCucumberBDDTopicExpand() {
+    checkCucumberBDDTopicExpandStep() {
         AccordionPOM.cucumberBddAccordion.should('have.text', 'Cucumber BDD').
             click().should('have.class', 'accordion active');
     }
 
-    checkCucumberBDDAccordionDdescription() {
+    checkCucumberBDDAccordionDdescriptionStep() {
         AccordionPOM.cucumberBddAccordionDescription.invoke('text').then((text) => {
             expect(text).to.equal(CucumberBDDDesc);
         })
     }
-    getAutomationTestingTopic() {
+    getAutomationTestingTopicStep() {
         AccordionPOM.cucumberBddAccordion.should('exist');
     }
-    checkAutomationTestingTopicExpand() {
+    checkAutomationTestingTopicExpandStep() {
         AccordionPOM.automationTestingAccordion.should('have.text', 'Automation Testing').
             click().should('have.class', 'accordion active');
     }
-    checkAutomationTestingDdescription() {
+    checkAutomationTestingDdescriptionStep() {
         AccordionPOM.automationTestingAccordionDescription.invoke('text').then((text) => {
             expect(text).to.equal(AutomationDesc);
         })
     }
-    getKeepClickingTopic() {
+    getKeepClickingTopicStep() {
         AccordionPOM.keepClickingAccordion.should('exist');
     }
-    checkKeepClickingExpand() {
+    checkKeepClickingExpandStep() {
         AccordionPOM.LoadingButton.invoke('text').then((currentText) => {
-            cy.waitUntil(() => {
+            cy.waitUntil(() =>
                 AccordionPOM.LoadingButton.invoke('text').then((expectedText) => {
-                    if(currentText !== expectedText){
-                       // AccordionPOM.LoadingButton.click();
-                       //cy.get('p#hidden-text').click();
-                     return AccordionPOM.cucumberBddAccordion.click().should('have.class', 'active')
-                    } 
+                    return currentText !== expectedText
                 })
-            }) 
+            ).then(() => {
+                AccordionPOM.keepClickingAccordion.click().should('have.class', 'active')
+            })
         })
     }
-
-    getLoadingButton() {
+    checkKeepClickingDescriptionStep(){
+        AccordionPOM.keepClickingAccordionDescription.invoke('text').then((text) => {
+            expect(text).to.equal(KeepClickingDesc);
+        })
+    }
+    getLoadingButtonStep() {
         AccordionPOM.LoadingButton.should('exist');
     }
-    getFooter() {
+    getFooterStep() {
         AccordionPOM.Footer.should('exist');
     }
-    checkHeaderStep() {
-        AccordionPOM.header().should('have.text', HeaderText);
-    }
-    checkCountOfAccordionStep() {
+   
+    checkCountOfAccordionStepStep() {
         AccordionPOM.AllTheAccordions.should('have.length', 4);
     }
-    checkManualTestingAccordionDdescription() {
+    checkManualTestingAccordionDdescriptionStep() {
         AccordionPOM.manualTestingAccordionDescription.invoke('text').then((text) => {
             expect(text).to.equal(ManualTestingDesc);
         })

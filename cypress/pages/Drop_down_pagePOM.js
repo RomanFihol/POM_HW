@@ -1,28 +1,29 @@
 /// <reference types="Cypress" />
 
-export class DropDownPage {
+export class DropDownPagePOM {
     visit() {
         cy.visit('www.webdriveruniversity.com/Dropdown-Checkboxes-RadioButtons/index.html')
     }
-    getTopickByTitle(arrayOfTitles) {
-        arrayOfTitles.forEach(title => {
-            return cy.xpath(`//div[@class="thumbnail"]/h2[contains(text(),"${title}")]`)
-                .invoke('text').should('eq', title)
-        });
-    }
-    getCountOfTopics() {
-        return cy.xpath('//div[@class="thumbnail"]').should('have.length', 4);
+
+    static get WebDriwerLink() {
+        return cy.get('a#nav-title')
     }
 
-    getDropDownById(id) {
+    static get MainTitle() {
+       return cy.xpath('//div[@id="main-header"]//h1')
+    }
+    static get getTopickByTitle() {
+        return cy.xpath(`//div[@class="thumbnail"]`)
+    }
+
+    static DropDownMenuTopic(){
+        return cy.xpath('//div[@class="thumbnail"]//h2[contains(text(),"Dropdown Menu(s)")]/..//div')
+    }
+
+    static getDropDownById(id) {
         return cy.get(`select#dropdowm-menu-${id}`);
     }
-    getAllTheValuesOfDropDown(arrayOfValues, idOfDropDown) {
-        arrayOfValues.forEach(value => {
-            let element = value.toLowerCase().trim();
-            this.getDropDownById(idOfDropDown).should('exist').select(element).invoke('val').should('eq', value);
-        })
-    }
+
     getCheckBoxes(id, arrayOfID) {
         cy.xpath(`//div[@id='checkboxes']//input[@value='option-3']`).uncheck().should('not.be.checked')
         arrayOfID.forEach(valueOfId => {
@@ -34,11 +35,8 @@ export class DropDownPage {
             }
         })
     }
-    getAllCheckboxes() {
-        cy.get('input[type="checkbox"]').each($el => {
-            let el = $el;
-            cy.wrap(el).check().should('be.checked').uncheck().should('not.be.checked');
-        })
+    static get getAllCheckboxes() {
+       return cy.xpath('//div[@id="checkboxes"]/label')
     }
     getRadioButtons(colors) {
         colors.forEach(colorValue => {
@@ -76,4 +74,9 @@ export class DropDownPage {
             })
         })
     }
+    static get getFooter() {
+       return cy.get('div.col-sm-12>p')
+    }
 }
+
+export const drop_down_page = new DropDownPagePOM;

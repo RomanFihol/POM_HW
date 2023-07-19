@@ -1,7 +1,7 @@
 
 export class AccordionPOM {
 
-    static get navBar(){
+    static get navBar() {
         return cy.get('a#nav-title')
     }
 
@@ -41,12 +41,16 @@ export class AccordionPOM {
         return cy.get('button#click-accordion');
     }
 
-    static get LoadingButton (){
-       return cy.get('div#text-appear-box > p');
+    static get keepClickingAccordionDescription() {
+        return cy.get('div#timeout');
     }
 
-    static get Footer (){
-       return cy.xpath('//footer//div//div[@class="col-lg-12"]');
+    static get LoadingButton() {
+        return cy.get('div#text-appear-box > p');
+    }
+
+    static get Footer() {
+        return cy.xpath('//footer//div//div[@class="col-lg-12"]');
     }
 
 }
