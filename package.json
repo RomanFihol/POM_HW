@@ -12,5 +12,10 @@
     "cypress": "^12.13.0",
     "cypress-wait-until": "^2.0.0",
     "cypress-xpath": "^2.0.1"
+  },
+  "dependencies": {
+    "cypress-commands": "^3.0.0",
+    "excel": "^1.0.1",
+    "js-xlsx": "^0.8.22"
   }
 }

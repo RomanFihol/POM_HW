@@ -1,4 +1,5 @@
 // ***********************************************
+import { months } from "../test-data/data_picker_datas"
 // This example commands.js shows you how to
 // create various custom commands and overwrite
 // existing commands.
@@ -24,8 +25,6 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-// import 'cypress-wait-until';
-
 // Cypress.Commands.overwrite('waitUntil', (originalFn, subject, callback, options) => {
 //   const customOptions = {
 //     ...options,
@@ -34,3 +33,18 @@
 
 //   return originalFn(subject, callback, customOptions);
 // });
+
+// Cypress.Commands.add('findMonth', function(month) {
+//     if(month === months[''])
+// })
+
+
+
+// function getCountOfdays(month) {
+//     if (month === months[3] || month === months[5] || month === months[8] || month === months[10]) {
+//         randomDay = Math.floor(Math.random() * 30)
+//         cy.log(randomDay)
+//         return randomDay
+//     }
+//     // } else if()
+// }

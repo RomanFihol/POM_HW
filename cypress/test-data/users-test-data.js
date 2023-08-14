@@ -15,7 +15,7 @@ export const users = [
         comment: 'Test text 2'
     },
     {
-        testName: "Wrong email",
+        testName: "Empty first name",
         first_name: '',
         email: 'test3@gmail',
         last_name: '3_name',

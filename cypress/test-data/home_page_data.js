@@ -1,0 +1,1 @@
+export const orderOfNavBar = ['Home', 'Our Products', 'Contact Us']

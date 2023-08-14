@@ -2,7 +2,7 @@
 
 import DropDownPagePOM from "../pages/Drop_down_pagePOM"
 import { drop_down_page_steps } from "../steps/drop_down_page_steps";
-import { checkboxIDs, dropDown1, dropDown2, dropDown3, fruits, radionButtonsValues, titles } from "../test-data/data_for_dropdown_page";
+import { checkboxIDs, dropDown1, dropDown2, dropDown3, fruits, radionButtonsValues, titles, vegetable } from "../test-data/data_for_dropdown_page";
 import { testData } from "../test-data/data_for_dropdown_page";
 import { drop_down_page } from "../pages/Drop_down_pagePOM";
 
@@ -23,17 +23,20 @@ describe('Verify all the values from static dropdown list', () => {
             drop_down_page_steps.getAllTheValuesOfDropDownStep(data.array, data.id)
         })
     })
-    it.only('Checkboxes test', () => {
-        drop_down_page_steps.checkCheckBoxes();
-       // drop_down_page.getCheckBoxes(2, checkboxIDs);
+    it('Checkboxes test', () => {
+        drop_down_page_steps.checkCheckBoxesStep();
     })
-    it('Check Radio Buttins', () => {
-        drop_down_page.getRadioButtons(radionButtonsValues);
+    it('Check Radio Buttons', () => {
+        drop_down_page_steps.checkRadioButtonsStep(radionButtonsValues);
     })
 
     it('Check Selected & Disabled topic', () => {
-        drop_down_page.getSelected$DisabledButtons();
-        drop_down_page.getDropDownFromSelect$DisabledTopic();
+        drop_down_page_steps.checkSelectedAndDisabledStep(vegetable);
+        drop_down_page_steps.checkSelectedAndDisabledDropDownStep(fruits);
+    })
+
+    it('Verify footer', () => {
+        drop_down_page_steps.getFooter();
     })
 
 })

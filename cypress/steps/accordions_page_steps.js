@@ -64,7 +64,7 @@ export class Accordion_Page_Steps {
     }
     checkKeepClickingExpandStep() {
         AccordionPOM.LoadingButton.invoke('text').then((currentText) => {
-            cy.waitUntil(() =>
+            cy.waitUntil(() => 
                 AccordionPOM.LoadingButton.invoke('text').then((expectedText) => {
                     return currentText !== expectedText
                 })
@@ -73,7 +73,7 @@ export class Accordion_Page_Steps {
             })
         })
     }
-    checkKeepClickingDescriptionStep(){
+    checkKeepClickingDescriptionStep() {
         AccordionPOM.keepClickingAccordionDescription.invoke('text').then((text) => {
             expect(text).to.equal(KeepClickingDesc);
         })
@@ -84,7 +84,6 @@ export class Accordion_Page_Steps {
     getFooterStep() {
         AccordionPOM.Footer.should('exist');
     }
-   
     checkCountOfAccordionStepStep() {
         AccordionPOM.AllTheAccordions.should('have.length', 4);
     }
@@ -94,5 +93,4 @@ export class Accordion_Page_Steps {
         })
     }
 }
-
 export const accord_page_steps = new Accordion_Page_Steps;

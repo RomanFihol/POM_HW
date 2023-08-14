@@ -1,8 +1,7 @@
 /// <reference types="Cypress" />
-//import { forEach } from "cypress/types/lodash";
+
 import { DropDownPagePOM } from "../pages/Drop_down_pagePOM";
-import { MainPageURL, WebDriwerLinkText, checkboxIDs, titles } from "../test-data/data_for_dropdown_page";
-// import { dropDown1 } from "../test-data/data_for_dropdown_page";
+import { DisabledFruit, DisabledVeg, MainPageURL, WebDriwerLinkText, fruits, titles } from "../test-data/data_for_dropdown_page";
 
 class DropDownPageSteps {
 
@@ -31,25 +30,40 @@ class DropDownPageSteps {
             expect(factArray).to.deep.equal(valuesOfArray);
         })
     }
-    checkCheckBoxes() {
+    checkCheckBoxesStep() {
         DropDownPagePOM.getAllCheckboxes.find('input').each(($el) => {
             let el = $el;
             cy.wrap(el).check().should('be.checked').uncheck().should('not.be.checked');
         })
     }
-
-
+    checkRadioButtonsStep(colors) {
+        colors.forEach(colorValue => {
+            DropDownPagePOM.getRadioButtons.find('input').check(colorValue).should('be.checked').
+                and('have.value', colorValue);
+        })
+    }
+    checkSelectedAndDisabledStep(vegetables) {
+        vegetables.forEach(vegValue => {
+            if (vegValue === DisabledVeg) {
+                DropDownPagePOM.getSelected$DisabledButtons(vegValue).should('be.disabled')
+            }
+            else {
+                DropDownPagePOM.getSelected$DisabledButtons(vegValue).check(vegValue);
+            }
+        })
+    }
+    checkSelectedAndDisabledDropDownStep(furits) {
+        fruits.forEach(fruit => {
+            if (fruit === DisabledFruit) {
+                DropDownPagePOM.getDropDownFromSelect$DisabledTopic.find('option').should('be.disabled')
+            } else {
+                DropDownPagePOM.getDropDownFromSelect$DisabledTopic.select(fruit).should('be.enabled')
+            }
+        })
+    }
     getFooter() {
         DropDownPagePOM.getFooter.should('exist').and('have.text', 'Copyright © www.GianniBruno.com')
     }
-
-    // DropDownPagePOM.getTopickByTitle(arrayOfTitles) {
-    //     arrayOfTitles.forEach(title => {
-    //         return cy.xpath(`//div[@class="thumbnail"]/h2[contains(text(),"${title}")]`)
-    //             .invoke('text').should('eq', title)
-    //     });
-    // }
-
 }
 
 export const drop_down_page_steps = new DropDownPageSteps;

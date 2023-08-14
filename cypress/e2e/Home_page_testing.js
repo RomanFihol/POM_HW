@@ -1,40 +1,35 @@
 /// <reference types="Cypress" />
-import Home_page from "../pages/Home_page.js";
+import { Home_page, home_page } from "../pages/Home_page.js";
+import { hp_steps } from "../steps/home_page_steps.js";
 
-const home_page = new Home_page;
+// const home_page = new Home_page;
 
 describe("Checking Page-Object-Models", () => {
     beforeEach(() => {
-        home_page.openHomePage();
+        Home_page.openHomePage();
     });
 
+    it('Verify site navigation', () => {
+        hp_steps.checkSiteNavigationNavBarStep();
+    })
+
     it('Verify link to the main page', () => {
-        home_page.checkLinkToTheMainPage();
+        home_page.checkLinkToTheMainPage;
     })
 
     it('Verify scrolling bottons', () => {
-        home_page.getLeftScrollButton().click().should('be.visible');
-        home_page.getRightScrollButton().click().should('be.visible');
+        hp_steps.checkLeftScrollButtonStep()
+        hp_steps.checkRigthScrollButtonStep()
     })
     it("Verify carousel indicators", () => {
-        home_page.getFirstElementOfCarousel();
-        home_page.getSecondElementOfCarousel();
-        home_page.getThirdElementOfCarousel();
-    })
-
-    it('Verify site navigation buttons', () => {
-        home_page.checkSiteNavigationOrder();
-        home_page.checkLinkToTheMainPage();
-        home_page.checkOurProductsPageLink();
-        home_page.checkContactUsPageLink();
+        hp_steps.checkCarouseleIndicatorStep();
     })
 
     it('Verify count of topics', () => {
-        home_page.checkCountOfTopics();
+        hp_steps.checkTopisCount();
     });
 
     it('Verify the Who Are We Topic and modal window', () => {
-        home_page.getWhoAreWeTopic();
-        home_page.checkModalWindow();
+        hp_steps.checkWhoWeAreTopic();
     });
 })

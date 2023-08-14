@@ -1,7 +1,7 @@
 import { errors } from "../test-data/users-test-data";
 
 class ContactUsPage {
-    
+
     static get getFirstName() {
         return cy.get("input[name='first_name']");
     };
@@ -27,7 +27,7 @@ class ContactUsPage {
         return cy.get('div#contact_reply > h1').should('have.text', 'Thank You for your Message!');
     }
 
-     static fillContactUsForm(user) {
+    static fillContactUsForm(user) {
         if (user.first_name) {
             this.getFirstName().type(user.first_name);
         }
@@ -42,16 +42,12 @@ class ContactUsPage {
         }
         this.getSubmitButton().click();
     }
-
-    getAllFieldsAreRequiredError() {
+    static get getAllFieldsAreRequiredError() {
         return cy.contains(errors.invailAllFields);
     }
-
-     static get getInvalidEmailError() {
+    static get getInvalidEmailError() {
         return cy.contains(errors.invalidEmail);
     }
-
-
 }
 
 export default ContactUsPage;

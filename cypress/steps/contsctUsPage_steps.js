@@ -1,6 +1,8 @@
 /// <reference types = "Cypress"/>
 
+
 import ContactUsPage from "../pages/contact_us_page";
+import { errors } from "../test-data/users-test-data";
 
 export class ContactUsPageSteps {
     visit() {
@@ -28,6 +30,14 @@ export class ContactUsPageSteps {
 
     verifySuccessMessages(){
         ContactUsPage.getSuccsessSubmitMessage.should('exist');
+    }
+
+    verifyInvalidEmailError(){
+            ContactUsPage.getInvalidEmailError.should('exist').contains(errors.invalidEmail);
+    }
+
+    verifyAllFieldsAreRequiredError(){
+        ContactUsPage.getAllFieldsAreRequiredError.should('exist').contains(errors.invailAllFields);
     }
 }
 
